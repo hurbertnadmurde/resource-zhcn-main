@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leisu · 日常质感与内容社区</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f7fafc;
+      color: #1a2b3c;
+      line-height: 1.6;
+      padding: 1.5rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(145deg, #eaf6f0 0%, #d4e9df 100%);
+      border-radius: 2.5rem;
+      padding: 3.5rem 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 24px rgba(38, 98, 86, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(72, 167, 145, 0.20) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0b2e28;
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #234d41;
+      max-width: 600px;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 2;
+      line-height: 1.7;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #126b56;
+      border: 1px solid rgba(55, 148, 126, 0.2);
+      margin-top: 1.6rem;
+    }
+
+    /* 网格卡片区 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(0, 30, 25, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(100, 170, 150, 0.12);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(34, 112, 97, 0.08);
+      border-color: #62b5a0;
+    }
+
+    .card .icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #114c3f;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2f4d44;
+    }
+
+    /* 说明区 —— 半宽布局 */
+    .insight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2.2rem 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 45, 38, 0.04);
+      border: 1px solid #d9ece4;
+    }
+
+    .insight-text {
+      flex: 2;
+      min-width: 240px;
+    }
+
+    .insight-text h2 {
+      font-size: 1.6rem;
+      font-weight: 550;
+      color: #0b3d33;
+      margin-bottom: 0.75rem;
+    }
+
+    .insight-text p {
+      margin-bottom: 0.8rem;
+      color: #1f3f36;
+    }
+
+    .insight-highlight {
+      flex: 1.3;
+      background: #e6f3ed;
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .insight-highlight .stat {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #0b4b3b;
+      margin-bottom: 0.5rem;
+    }
+
+    .insight-highlight .stat small {
+      font-weight: 400;
+      color: #2f6a5b;
+      font-size: 0.9rem;
+    }
+
+    .insight-highlight .badge {
+      background: #227e67;
+      color: white;
+      font-size: 0.8rem;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      width: fit-content;
+      margin-top: 0.6rem;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 2rem 2rem 1.8rem;
+      margin-bottom: 2.8rem;
+      border: 1px solid #d2e8df;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.4rem;
+      font-weight: 550;
+      color: #114c3f;
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e1efe9;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 530;
+      color: #0b4236;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-answer {
+      color: #2b594b;
+      font-size: 0.95rem;
+    }
+
+    .faq-cta {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 1.2rem 0 0.5rem;
+      border-top: 1px solid #cee2d9;
+      color: #275e4f;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: #126b56;
+      text-decoration: none;
+      border-bottom: 1px dotted transparent;
+      transition: border-color 0.2s;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #126b56;
+    }
+
+    .footer-meta {
+      color: #3a6d5e;
+      font-size: 0.85rem;
+    }
+
+    .inline-link {
+      color: #0e6b54;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #62b5a0;
+      transition: color 0.2s;
+    }
+
+    .inline-link:hover {
+      color: #094433;
+      border-bottom-color: #094433;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+
+      .hero {
+        padding: 2.2rem 1.2rem;
+        border-radius: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .insight {
+        flex-direction: column;
+        padding: 1.6rem;
+      }
+
+      .faq-summary {
+        padding: 1.5rem;
+      }
+
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+    }
+
+    /* 非常小屏微调 */
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        padding: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- hero -->
+    <div class="hero">
+      <h1>内容、质地与日常的落脚处</h1>
+      <p>在信息流之外，保留一种更安静、更经得起反复阅读的社区质感。这里不是快讯广场，而是由兴趣与对话自然生长出的角落。</p>
+      <span class="tagline">✦ leisu · 不止于聚合</span>
+    </div>
+
+    <!-- 优势卡片网格 -->
+    <div class="grid-cards">
+      <div class="card">
+        <div class="icon">🌱</div>
+        <h3>低噪氛围</h3>
+        <p>没有算法强推，没有信息过载。内容依照时间与讨论自然沉淀，你决定关注什么。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🪴</div>
+        <h3>主题花园</h3>
+        <p>从日常器物、独立出版到城市漫步，每个话题都由真实的分享搭建起来。</p>
+      </div>
+      <div class="card">
+        <div class="icon">📎</div>
+        <h3>轻量工具感</h3>
+        <p>页面干净，操作直觉。不管是写一段笔记还是发起讨论，都不需要学习成本。</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔗</div>
+        <h3>开放连接</h3>
+        <p>支持站外引用与跨平台分享，不圈禁内容，让好的讨论可以流动。</p>
+      </div>
+    </div>
+
+    <!-- 说明区 (半宽布局) -->
+    <div class="insight">
+      <div class="insight-text">
+        <h2>用一种更舒服的方式阅读与交流</h2>
+        <p>很多社区越做越像广场，而 <a href="https://official-pc-leisu.com" class="inline-link">leisu</a> 更像一个带天井的客厅——你随时可以进来坐坐，看看谁在聊什么，或者只是翻翻旧帖子。</p>
+        <p>这里没有打榜式的热度排序，每个话题的权重只取决于参与者的认真程度。你可以花十分钟写一段长回复，也可以只留一张照片加一句话。节奏由你自己控制。</p>
+        <p>我们希望这个空间能容纳那些“不那么着急”的内容：一篇关于自制发酵饮品的笔记、一场小区里的植物交换活动记录、一段对附近书店的观察。</p>
+      </div>
+      <div class="insight-highlight">
+        <div class="stat">📋 话题分类 · 手动整理</div>
+        <div class="stat">🗂️ 精选归档 · 可回溯</div>
+        <div class="stat">🤝 成员推荐 · 去中心化 <small>（非算法）</small></div>
+        <div class="badge">沉淀型社区</div>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-summary">
+      <h2>常见疑问 · 摘要</h2>
+      <div class="faq-item">
+        <span class="faq-question">❔ 是否需要注册才能浏览全部内容？</span>
+        <div class="faq-answer">大部分内容对访客可见，部分深度讨论或附件可能需要轻量注册（仅需邮箱，无手机绑定）。</div>
+      </div>
+      <div class="faq-item">
+        <span class="faq-question">❔ 可以自行发起话题或专栏吗？</span>
+        <div class="faq-answer">当然。注册后即可在对应分区发表内容，也支持创建个人主题合集。目前没有发帖门槛。</div>
+      </div>
+      <div class="faq-item">
+        <span class="faq-question">❔ 内容是否会同步到其他平台？</span>
+        <div class="faq-answer">不主动同步。你可以手动复制链接分享，平台本身不进行跨站分发，保证讨论的独立语境。</div>
+      </div>
+      <div class="faq-cta">
+        更多细节可前往 <a href="https://official-pc-leisu.com" class="inline-link">leisu</a> 内查看帮助页。
+      </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+      <span>
+        主页 · <a href="https://official-pc-leisu.com">leisu</a>
+      </span>
+      <span class="footer-meta">
+        基于兴趣的内容生态 · 日常质地
+      </span>
+    </div>
+  </div>
+</body>
+</html>
